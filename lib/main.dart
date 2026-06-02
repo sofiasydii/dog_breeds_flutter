@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'breed_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,7 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: breeds.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: const Icon(Icons.pets),
             title: Text(breeds[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => BreedDetailsScreen(breed: breeds[index]),
+                ),
+              );
+            },
           );
         },
       ),
